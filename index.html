@@ -5,204 +5,544 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Kamesh Aether's project dashboard - showcasing AI, games, and web development projects">
   <title>Kamesh Aether Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;1,400&family=EB+Garamond:ital,wght@0,400;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     /* ═══════════════════════════════════════════════
-       THE READING NOOK — Vintage Book Aesthetic
+       MINIMAL ARTISTIC — Modern Polished Design
        ═══════════════════════════════════════════════ */
     
     :root {
-      --ivory: #fdfbf7;
-      --cream: #f8f1e4;
-      --parchment: #f3e9d2;
-      --aged-paper: #eaddc5;
-      --tan: #c4a882;
-      --sepia: #8b6f4e;
-      --saddle: #6b4e3d;
-      --chocolate: #4a3728;
-      --espresso: #2e2218;
-      --ink: #1a120b;
-      --gold: #b9923f;
-      --gold-light: #d4b16a;
-      --copper: #a85c32;
-      --wine: #722f37;
-      --forest: #3d5c3a;
-      --shadow-light: 0 2px 8px rgba(26,18,11,0.08);
-      --shadow-medium: 0 8px 24px rgba(26,18,11,0.12);
-      --shadow-heavy: 0 12px 40px rgba(26,18,11,0.18);
+      /* Palette — Minimal & Sophisticated */
+      --bg-primary: #0a0a0a;
+      --bg-secondary: #111111;
+      --bg-card: #161616;
+      --bg-card-hover: #1c1c1c;
+      
+      --text-primary: #ffffff;
+      --text-secondary: #a1a1a1;
+      --text-tertiary: #6b6b6b;
+      
+      --accent-gold: #d4af37;
+      --accent-gold-dim: #997d2a;
+      --accent-blue: #5b8ff9;
+      --accent-purple: #9b7ceb;
+      --accent-rose: #f472b6;
+      --accent-teal: #2dd4bf;
+      
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --border-highlight: rgba(255, 255, 255, 0.12);
+      
+      --glow-gold: 0 0 40px rgba(212, 175, 55, 0.15);
+      --glow-blue: 0 0 40px rgba(91, 143, 249, 0.15);
+      
+      --ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+      --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
     
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
     
     body {
-      font-family: 'EB Garamond', Georgia, serif;
-      background: var(--ivory);
-      color: var(--ink);
-      line-height: 1.75;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
       overflow-x: hidden;
       min-height: 100vh;
+      position: relative;
     }
     
-    /* Overlays */
-    .paper-texture {
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg width='300' height='300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 999; opacity: 0.6; mix-blend-mode: multiply;
-    }
-    .age-overlay {
-      position: fixed; inset: 0;
-      background: radial-gradient(circle at 20% 80%, rgba(184,157,110,0.05) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 20%, rgba(184,157,110,0.04) 0%, transparent 50%);
-      pointer-events: none; z-index: 998;
+    /* ═══════════════════════════════════════════════
+       ANIMATED BACKGROUND
+       ═══════════════════════════════════════════════ */
+    
+    .gradient-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
     }
     
-    /* Top Leather Binding */
-    .leather-binding {
-      position: fixed; top: 0; left: 0; right: 0; height: 6px;
-      background: linear-gradient(90deg, var(--chocolate) 0%, var(--saddle) 15%, var(--chocolate) 30%, var(--saddle) 50%, var(--chocolate) 70%, var(--saddle) 85%, var(--chocolate) 100%);
-      box-shadow: 0 2px 8px rgba(26,18,11,0.3); z-index: 997; pointer-events: none;
+    .gradient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      animation: float 20s ease-in-out infinite;
     }
     
-    /* Header */
+    .gradient-orb:nth-child(1) {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      animation-delay: 0s;
+    }
+    
+    .gradient-orb:nth-child(2) {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(91, 143, 249, 0.12) 0%, transparent 70%);
+      bottom: -150px;
+      left: -150px;
+      animation-delay: -7s;
+    }
+    
+    .gradient-orb:nth-child(3) {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(155, 124, 235, 0.1) 0%, transparent 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation-delay: -14s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -30px) scale(1.05); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(20px, 30px) scale(1.02); }
+    }
+    
+    /* Grain texture overlay */
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+    
+    /* ═══════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════ */
+    
     header.site-header {
-      text-align: center; padding: 70px 20px 50px; position: relative;
-      background: linear-gradient(180deg, var(--cream) 0%, var(--parchment) 60%, transparent 100%);
-      border-bottom: 1px solid var(--tan);
-    }
-    .site-title {
-      font-family: 'Cinzel', 'Playfair Display', serif; font-size: clamp(2.2rem, 5 upgrade the tool outputs to be as polished as a real-world application.5vw, 3.8rem); font-weight: 400; color: var(--chocolate); letter-spacing: 6px; text-transform: uppercase; text-shadow: 1px 1px 2px rgba(0,0,0,0.08); line-height: 1.2; position: relative; display: inline-block;
-    }
-    .site-title::after {
-      content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-    .site-subtitle {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--sepia); font-style: italic; letter-spacing: 3px; margin-top: 18px; opacity: 0.85;
+      text-align: center;
+      padding: 120px 20px 80px;
+      position: relative;
+      z-index: 2;
     }
     
-    /* Grid & Cards */
+    .site-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      animation: fadeInUp 0.8s var(--ease-out);
+    }
+    
+    .site-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+      animation: fadeInUp 0.8s var(--ease-out) 0.1s both;
+    }
+    
+    /* Decorative line */
+    .title-decoration {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+      margin: 24px auto 0;
+      animation: expandWidth 1s var(--ease-out) 0.2s both;
+    }
+    
+    /* ═══════════════════════════════════════════════
+       GRID & CARDS
+       ═══════════════════════════════════════════════ */
+    
     .grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;
-      max-width: 1200px; margin: 0 auto; padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      position: relative;
+      z-index: 2;
     }
     
     .card {
-      background: linear-gradient(180deg, var(--ivory) 0%, var(--cream) 100%);
-      border: 1px solid var(--tan); border-radius: 12px; overflow: hidden;
-      box-shadow: var(--shadow-light); transition: all 0.3s ease;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.5s var(--ease-out);
+      position: relative;
+      animation: fadeInUp 0.6s var(--ease-out) both;
+      animation-delay: calc(var(--card-index, 0) * 0.1s);
     }
-    .card:hover { transform: translateY(-8px) rotate(0.5deg); box-shadow: var(--shadow-heavy); }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.5s var(--ease-out);
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-highlight);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), var(--glow-gold);
+    }
+    
+    .card:hover::before {
+      opacity: 1;
+    }
+    
     .card-img {
-      height: 180px; background: linear-gradient(45deg, var(--chocolate) 0%, var(--espresso) 100%);
-      display: flex; align-items: center; justify-content: center; color: var(--gold-light); font-size: 4rem;
+      height: 200px;
+      background: var(--bg-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+      overflow: hidden;
     }
-    .card-content { padding: 1.5rem; }
-    .card h2 { font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--chocolate); font-family: 'Playfair Display', serif; }
-    .card p { color: var(--saddle); margin-bottom: 1.2rem; font-size: 0.95rem; line-height: 1.6; }
     
-    /* Button */
+    .card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 100%);
+    }
+    
+    .card-emoji {
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+      transition: transform 0.5s var(--ease-elastic);
+    }
+    
+    .card:hover .card-emoji {
+      transform: scale(1.15) rotate(5deg);
+    }
+    
+    .card-content {
+      padding: 28px;
+    }
+    
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    
+    .card p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.925rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    
+    /* Button with polish */
     .btn {
-      display: inline-block; background: var(--gold); color: var(--espresso); padding: 0.75rem 1.5rem;
-      border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;
-      border: none; cursor: pointer; font-size: 0.9rem; font-family: 'Cinzel', serif; letter-spacing: 1px; text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: transparent;
+      color: var(--accent-gold);
+      border: 1px solid var(--accent-gold-dim);
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      transition: all 0.3s var(--ease-out);
+      position: relative;
+      overflow: hidden;
     }
-    .btn:hover { background: var(--gold-light); transform: scale(1.05); color: var(--chocolate); }
     
-    /* Footer */
-    footer { text-align: center; padding: 40px 20px; margin-top: 60px; color: var(--sepia); font-family: 'EB Garamond', serif; font-style: italic; border-top: 1px solid var(--tan); }
-    
-    /* Bottom Leather Binding */
-    .leather-binding-bottom {
-      height: 25px;
-      background: linear-gradient(180deg, var(--sepia) 0%, var(--saddle) 40%, var(--chocolate) 100%);
-      box-shadow: 0 -2px 8px rgba(26,18,11,0.15);
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--accent-gold);
+      transform: translateX(-100%);
+      transition: transform 0.3s var(--ease-out);
+      z-index: -1;
     }
+    
+    .btn:hover {
+      color: var(--bg-primary);
+      border-color: var(--accent-gold);
+      transform: translateX(4px);
+    }
+    
+    .btn:hover::before {
+      transform: translateX(0);
+    }
+    
+    .btn-arrow {
+      font-size: 1rem;
+      transition: transform 0.3s var(--ease-out);
+    }
+    
+    .btn:hover .btn-arrow {
+      transform: translateX(4px);
+    }
+    
+    /* ═══════════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════════ */
+    
+    footer {
+      text-align: center;
+      padding: 60px 20px;
+      position: relative;
+      z-index: 2;
+      border-top: 1px solid var(--border-subtle);
+    }
+    
+    footer p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-tertiary);
+      font-weight: 300;
+    }
+    
+    footer a {
+      color: var(--accent-gold);
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    footer a:hover {
+      opacity: 0.8;
+    }
+    
+    /* ═══════════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════════ */
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes expandWidth {
+      from { width: 0; }
+      to { width: 60px; }
+    }
+    
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════ */
     
     @media (max-width: 768px) {
-      .grid { grid-template-columns: 1fr; gap: 16px; }
-      .site-header { padding: 50px 20px 30px; }
-      .site-title { font-size: clamp(1.8rem, 4vw, 2.5rem); letter-spacing: 4px; }
-      .site-subtitle { font-size: 0.9rem; letter-spacing: 2px; }
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px 60px;
+      }
+      
+      header.site-header {
+        padding: 80px 20px 50px;
+      }
+      
+      .site-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+      }
+      
+      .site-subtitle {
+        font-size: 0.95rem;
+      }
+      
+      .card-img {
+        height: 180px;
+        font-size: 4rem;
+      }
+    }
+    
+    /* ═══════════════════════════════════════════════
+       SCROLLBAR (WebKit)
+       ═══════════════════════════════════════════════ */
+    
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-highlight);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-tertiary);
     }
   </style>
 </head>
 <body>
-  <div class="paper-texture"></div>
-  <div class="age-overlay"></div>
-  <div class="leather-binding"></div>
-
+  <!-- Animated Background -->
+  <div class="gradient-bg">
+    <div class="gradient-orb"></div>
+    <div class="gradient-orb"></div>
+    <div class="gradient-orb"></div>
+  </div>
+  
+  <!-- Grain Texture -->
+  <div class="grain-overlay"></div>
+  
+  <!-- Header -->
   <header class="site-header">
-    <h1 class="site-title">Kamesh Aether Dashboard</h1>
-    <p class="site-subtitle">Showcasing projects and live demos</p>
+    <h1 class="site-title">Kamesh Aether</h1>
+    <p class="site-subtitle">Project Dashboard & Live Demos</p>
+    <div class="title-decoration"></div>
   </header>
-
+  
+  <!-- Main Grid -->
   <main>
     <div class="grid">
-      <article class="card">
-        <div class="card-img">📝</div>
+      <article class="card" style="--card-index: 0">
+        <div class="card-img">
+          <span class="card-emoji">📝</span>
+        </div>
         <div class="card-content">
           <h2>AI Today Blog</h2>
           <p>Latest insights, tutorials, and news about artificial intelligence and machine learning.</p>
-          <a href="https://kameshaether.github.io/ai-today-blog/" target="_blank" class="btn">Visit Blog</a>
+          <a href="https://kameshaether.github.io/ai-today-blog/" target="_blank" class="btn">
+            Visit Blog
+            <span class="btn-arrow">→</span>
+          </a>
         </div>
       </article>
-
-      <article class="card">
-      <div class="card-img">⚡</div>
-      <div class="card-content">
-      <h2>Harry Potter Chronicle</h2>
-      <p>Complete film-series story, magical UI, and journey through Hogwarts.</p>
-      <a href="https://kameshaether.github.io/movie/" target="_blank" class="btn">Read Chronicle</a>
-      </div>
+      
+      <article class="card" style="--card-index: 1">
+        <div class="card-img">
+          <span class="card-emoji">⚡</span>
+        </div>
+        <div class="card-content">
+          <h2>Harry Potter Chronicle</h2>
+          <p>Complete film-series story, magical UI, and journey through Hogwarts.</p>
+          <a href="https://kameshaether.github.io/movie/" target="_blank" class="btn">
+            Read Chronicle
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
       </article>
-
-      <article class="card">
-      <div class="card-img">🎬</div>
-      <div class="card-content">
-      <h2>Stranger Things</h2>
-      <p>Journey into the Upside Down with this interactive experience inspired by the hit series.</p>
-      <a href="https://kameshaether.github.io/stranger_things/" target="_blank" class="btn">Enter the Upside Down</a>
-      </div>
+      
+      <article class="card" style="--card-index: 2">
+        <div class="card-img">
+          <span class="card-emoji">🎬</span>
+        </div>
+        <div class="card-content">
+          <h2>Stranger Things</h2>
+          <p>Journey into the Upside Down with this interactive experience inspired by the hit series.</p>
+          <a href="https://kameshaether.github.io/stranger_things/" target="_blank" class="btn">
+            Enter Upside Down
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
       </article>
-
-      <article class="card">
-      <div class="card-img">🏍️</div>
-      <div class="card-content">
-      <h2>Road Rash</h2>
-      <p>A classic motorcycle combat game revival with modern graphics and gameplay.</p>
-      <a href="https://kameshaether.github.io/roadrash/" target="_blank" class="btn">Play Game</a>
-      </div>
+      
+      <article class="card" style="--card-index: 3">
+        <div class="card-img">
+          <span class="card-emoji">🏍️</span>
+        </div>
+        <div class="card-content">
+          <h2>Road Rash</h2>
+          <p>Classic motorcycle combat game revival with modern graphics and gameplay.</p>
+          <a href="https://kameshaether.github.io/roadrash/" target="_blank" class="btn">
+            Play Game
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
       </article>
-
-      <article class="card">
-        <div class="card-img">🐍</div>
+      
+      <article class="card" style="--card-index: 4">
+        <div class="card-img">
+          <span class="card-emoji">🐍</span>
+        </div>
         <div class="card-content">
           <h2>Snake Game</h2>
           <p>Modern take on the classic snake game with power-ups and increasing difficulty.</p>
-          <a href="https://kameshaether.github.io/snake-game/" target="_blank" class="btn">Play Game</a>
+          <a href="https://kameshaether.github.io/snake-game/" target="_blank" class="btn">
+            Play Game
+            <span class="btn-arrow">→</span>
+          </a>
         </div>
       </article>
-
-      <article class="card">
-        <div class="card-img">🍄</div>
+      
+      <article class="card" style="--card-index: 5">
+        <div class="card-img">
+          <span class="card-emoji">🍄</span>
+        </div>
         <div class="card-content">
           <h2>Super Mario Clone</h2>
           <p>Side-scrolling platformer inspired by the iconic Super Mario series.</p>
-          <a href="https://kameshaether.github.io/super-mario/" target="_blank" class="btn">Play Game</a>
+          <a href="https://kameshaether.github.io/super-mario/" target="_blank" class="btn">
+            Play Game
+            <span class="btn-arrow">→</span>
+          </a>
         </div>
       </article>
     </div>
   </main>
-
+  
+  <!-- Footer -->
   <footer>
-    <p>&copy; <span id="year"></span> Kamesh Aether. All rights reserved.</p>
+    <p>&copy; <span id="year"></span> Kamesh Aether. Crafted with precision.</p>
   </footer>
-
-  <div class="leather-binding-bottom"></div>
-
+  
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Add subtle parallax effect on mouse move
+    document.addEventListener('mousemove', (e) => {
+      const orbs = document.querySelectorAll('.gradient-orb');
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      
+      orbs.forEach((orb, i) => {
+        const speed = (i + 1) * 20;
+        const xOffset = (x - 0.5) * speed;
+        const yOffset = (y - 0.5) * speed;
+        orb.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+      });
+    });
   </script>
 </body>
 </html>
