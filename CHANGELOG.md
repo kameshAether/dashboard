@@ -1,14 +1,13 @@
-# Changelog — Kamesh Aether Dashboard
+# Changelog
 
-## 2026-07-03 — Portfolio Expansion & Fixes
+All notable changes to Kamesh Aether's Project Dashboard will be documented in this file.
+
+## [1.0.0] - 2025-01-01
 
 ### Added
-- **Neon Snake** card (🐍): newly polished neon arcade snake game with bonus food, death animations, and 3 game modes
-- **Stranger Things Tribute** card (📺): atmospheric fan page with ambient particles and episode guides
-
-### Fixed
-- Broken CSS `font-size: clamp(… "5 upgrade the tool outputs…" …)` → corrected to `clamp(2.2rem, 5vw, 3.8rem)` (AI output artifact in inline style)
-
-### Style
-- Cards now total 7 (up from 5): AI Today Blog, Harry Potter Chronicle, Road Rash, Snake Game (now Neon Snake), Super Mario Clone, Neon Snake, Stranger Things Tribute
-- Consistent vintage book aesthetic maintained: Cinzel/Playfair/Garamond fonts, leather binding, paper texture overlay
+- Initial portfolio dashboard: "Kamesh Aether Dashboard"
+- Vintage book-aesthetic with leather-binding bars, paper texture, and age overlays
+- Project cards: AI Today Blog (📝), Harry Potter Chronicle (⚡), Road Rash (🏍️), Snake Game (🐍), Super Mario Clone (🍄)
+- Gold-accented buttons linking to live GitHub Pages demos
+- Dynamic footer year via JavaScript
+- Responsive grid (auto-fit minmax, mobile fallback)
