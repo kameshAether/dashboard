@@ -4,33 +4,31 @@
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta name="description" content="Kamesh Aether's project dashboard — showcasing AI, games, and web development projects">
- <meta name="theme-color" content="#0A0A0A">
+ <meta name="theme-color" content="#050507">
  <meta property="og:title" content="Kamesh Aether Dashboard">
- <meta property="og:description" content="Minimal matte-black portfolio showcasing AI projects, games, and fan tributes.">
+ <meta property="og:description" content="High-end boutique studio portfolio showcasing AI projects, games, and fan tributes.">
  <meta property="og:type" content="website">
  <meta property="og:url" content="https://kameshaether.github.io/dashboard/">
  <meta name="twitter:card" content="summary_large_image">
  <title>Kamesh Aether Dashboard</title>
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
  <style>
  /* ═══════════════════════════════════════════════
- MINIMAL MATTE BLACK DASHBOARD
+ BOUTIQUE CYBER-NOIR DASHBOARD
  ═══════════════════════════════════════════════ */
 
  :root {
- --bg: #0A0A0A;
- --surface: #141414;
- --border: #2A2A2A;
- --border-hover: rgba(0, 229, 204, 0.5);
- --text: #EAEAEA;
- --text-secondary: #888888;
- --accent: #00E5CC;
- --accent-hover: #40E0D0;
- --status-green: #10B981;
- --shadow-subtle: 0 2px 8px rgba(0, 0, 0, 0.35);
- --shadow-elevated: 0 8px 32px rgba(0, 229, 204, 0.08);
+ --bg: #050507;
+ --surface: #0D0D12;
+ --accent: #00F5FF;
+ --accent-hover: #33F7FF;
+ --secondary: #7000FF;
+ --text: #F5F5F7;
+ --text-secondary: #86868B;
+ --border: rgba(255, 255, 255, 0.08);
+ --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
  }
 
  *, *::before, *::after {
@@ -51,6 +49,43 @@
  line-height: 1.75;
  overflow-x: hidden;
  min-height: 100vh;
+ position: relative;
+ z-index: 0;
+ }
+
+ /* — Global Noise (Film Look) — */
+ .noise-overlay {
+ position: fixed;
+ inset: 0;
+ pointer-events: none;
+ z-index: 999;
+ opacity: 0.03;
+ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+ }
+
+ /* — Ambient Orbs — */
+ .ambient-orb {
+ position: fixed;
+ border-radius: 50%;
+ pointer-events: none;
+ z-index: -1;
+ filter: blur(200px);
+ opacity: 0.35;
+ will-change: transform;
+ }
+ .ambient-orb.orb-1 {
+ width: 600px;
+ height: 600px;
+ background: var(--secondary);
+ top: -150px;
+ left: -150px;
+ }
+ .ambient-orb.orb-2 {
+ width: 500px;
+ height: 500px;
+ background: var(--accent);
+ bottom: -150px;
+ right: -150px;
  }
 
  /* — Header — */
@@ -63,36 +98,27 @@
 
  .site-title {
  font-size: clamp(2rem, 4.5vw, 3.2rem);
- font-weight: 600;
+ font-weight: 700;
  color: var(--text);
- letter-spacing: -0.5px;
+ letter-spacing: -0.04em;
  line-height: 1.15;
  margin-bottom: 12px;
- }
-
- .site-title::after {
- content: '';
- display: block;
- width: 48px;
- height: 3px;
- background: var(--accent);
- margin-top: 16px;
- border-radius: 2px;
  }
 
  .site-subtitle {
  font-size: 1.05rem;
  color: var(--text-secondary);
  font-weight: 400;
- letter-spacing: 0.3px;
+ letter-spacing: 0.02em;
+ line-height: 1.6;
  }
 
  /* — Category Labels — */
  .category-label {
  text-align: center;
- font-size: 0.8rem;
+ font-size: 0.7rem;
  font-weight: 600;
- letter-spacing: 3px;
+ letter-spacing: 0.28em;
  text-transform: uppercase;
  color: var(--text-secondary);
  margin: 56px auto 24px;
@@ -105,41 +131,76 @@
  .category-label::after {
  content: '';
  display: inline-block;
- width: 48px;
+ width: 40px;
  height: 1px;
  background: var(--border);
  vertical-align: middle;
- margin: 0 14px;
+ margin: 0 12px;
  }
 
- /* — Grid & Cards — */
- .grid {
+ /* — Bento Grid — */
+ .bento-grid {
  display: grid;
- grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
- gap: 24px;
+ grid-template-columns: repeat(4, 1fr);
+ grid-template-rows: auto;
+ grid-template-areas:
+   "words words words words"
+   "hero  hero  harry road"
+   "hero  hero  stranger neon"
+   "games games games games"
+   "mario mario mario mario";
+ gap: 16px;
  max-width: 1200px;
  margin: 0 auto;
  padding: 0 48px;
  }
 
+ .bento-label-words { grid-area: words; }
+ .bento-label-games { grid-area: games; }
+ .card-hero { grid-area: hero; }
+ .card-harry { grid-area: harry; }
+ .card-road { grid-area: road; }
+ .card-stranger { grid-area: stranger; }
+ .card-neon { grid-area: neon; }
+ .card-mario { grid-area: mario; }
+
+ /* — Cards (Glassmorphism 2.0) — */
  .card {
- background: rgba(20, 20, 20, 0.6);
- backdrop-filter: blur(16px);
- -webkit-backdrop-filter: blur(16px);
- border: 1px solid rgba(42, 42, 42, 0.6);
- border-radius: 12px;
+ background: rgba(13, 13, 18, 0.7);
+ backdrop-filter: blur(24px) saturate(180%);
+ -webkit-backdrop-filter: blur(24px) saturate(180%);
+ border: 1px solid var(--border);
+ border-radius: 20px;
  overflow: hidden;
- transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+ transition: border-color 0.25s ease, box-shadow 0.25s ease;
  display: flex;
  flex-direction: column;
+ position: relative;
+ }
+
+ /* — Glint Effect — */
+ .card::before {
+ content: '';
+ position: absolute;
+ inset: 0;
+ background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+ transform: translateX(-100%);
+ transition: transform 0.6s ease;
+ pointer-events: none;
+ z-index: 2;
+ border-radius: inherit;
+ }
+
+ .card:hover::before {
+ transform: translateX(100%);
  }
 
  .card:hover {
- border-color: var(--border-hover);
- transform: translateY(-4px);
- box-shadow: var(--shadow-elevated);
+ border-color: rgba(0, 245, 255, 0.2);
+ box-shadow: var(--shadow-glass), inset 0 0 20px rgba(0, 245, 255, 0.03);
  }
 
+ /* — Card Images — */
  .card-img {
  height: 180px;
  display: flex;
@@ -150,44 +211,54 @@
  overflow: hidden;
  }
 
+ .card-hero .card-img {
+ height: 220px;
+ font-size: 4.5rem;
+ }
+
  .card-content {
- padding: 1.5rem 1.5rem 1.75rem;
+ padding: 1.5rem;
  display: flex;
  flex-direction: column;
  flex-grow: 1;
+ position: relative;
+ z-index: 1;
  }
 
  .card h2 {
- font-size: 1.3rem;
+ font-size: 1.35rem;
  margin-bottom: 0.75rem;
  color: var(--text);
- font-weight: 600;
- letter-spacing: -0.2px;
+ font-weight: 700;
+ letter-spacing: -0.03em;
+ line-height: 1.2;
  }
 
  .card p {
  color: var(--text-secondary);
- margin-bottom: 1.2rem;
+ margin-bottom: 1.4rem;
  font-size: 0.92rem;
  line-height: 1.65;
  flex-grow: 1;
+ font-weight: 400;
+ letter-spacing: 0.01em;
  }
 
- /* — Per-card gradients — */
- .card-img.blog { background: linear-gradient(135deg, #2c1e18 0%, #1a110d 100%); }
- .card-img.harry-potter { background: linear-gradient(135deg, #2c1320 0%, #1a0d14 100%); }
- .card-img.road-rash { background: linear-gradient(135deg, #3d2210 0%, #1f140b 100%); }
- .card-img.neon-snake { background: linear-gradient(135deg, #0b1224 0%, #060d1b 100%); }
- .card-img.mario { background: linear-gradient(135deg, #2c1e18 0%, #1a110d 100%); }
- .card-img.stranger { background: linear-gradient(135deg, #1a0f0f 0%, #0f0808 100%); }
+ /* — Atmospheric Gradients — */
+ .card-img.blog { background: linear-gradient(135deg, #1a0f0a 0%, #0f0805 100%); }
+ .card-img.harry-potter { background: linear-gradient(135deg, #1f0a1a 0%, #140510 100%); }
+ .card-img.road-rash { background: linear-gradient(135deg, #1f1008 0%, #140a04 100%); }
+ .card-img.neon-snake { background: linear-gradient(135deg, #05101f 0%, #030810 100%); }
+ .card-img.mario { background: linear-gradient(135deg, #0a1f0a 0%, #051405 100%); }
+ .card-img.stranger { background: linear-gradient(135deg, #1f0505 0%, #140303 100%); }
 
- /* — Button — */
+ /* — Buttons — */
  .btn {
  display: inline-block;
  background: var(--accent);
- color: #0A0A0A;
- padding: 0.6rem 1.25rem;
- border-radius: 8px;
+ color: #050507;
+ padding: 0.65rem 1.4rem;
+ border-radius: 10px;
  text-decoration: none;
  font-weight: 600;
  transition: background 0.2s ease, transform 0.2s ease;
@@ -197,6 +268,24 @@
  font-family: 'Inter', sans-serif;
  letter-spacing: 0.01em;
  align-self: flex-start;
+ position: relative;
+ overflow: hidden;
+ z-index: 1;
+ }
+
+ .btn::before {
+ content: '';
+ position: absolute;
+ inset: 0;
+ background: radial-gradient(circle at var(--btn-x, 50%) var(--btn-y, 50%), rgba(255,255,255,0.3) 0%, transparent 60%);
+ opacity: 0;
+ transition: opacity 0.3s ease;
+ z-index: -1;
+ border-radius: inherit;
+ }
+
+ .btn:hover::before {
+ opacity: 1;
  }
 
  .btn:hover {
@@ -214,34 +303,35 @@
  display: inline-flex;
  align-items: center;
  gap: 6px;
- font-size: 0.65rem;
+ font-size: 0.62rem;
  font-weight: 600;
  color: var(--text-secondary);
  text-transform: uppercase;
- letter-spacing: 0.8px;
+ letter-spacing: 0.08em;
  margin-bottom: 0.6rem;
  }
 
  .status-dot {
  width: 8px;
  height: 8px;
- background: var(--status-green);
+ background: #10B981;
  border-radius: 50%;
  position: relative;
+ box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
  }
 
  .status-dot::after {
  content: '';
  position: absolute;
- inset: 0;
+ inset: -2px;
  border-radius: 50%;
- background: var(--status-green);
+ background: rgba(16, 185, 129, 0.6);
  animation: pulse-dot 2s infinite;
  }
 
  @keyframes pulse-dot {
- 0% { transform: scale(1); opacity: 0.8; }
- 100% { transform: scale(2.5); opacity: 0; }
+ 0% { transform: scale(1); opacity: 0.6; }
+ 100% { transform: scale(2.8); opacity: 0; }
  }
 
  /* — Back to Top — */
@@ -251,21 +341,21 @@
  right: 30px;
  width: 48px;
  height: 48px;
- background: var(--accent);
+ background: var(--surface);
  border: 1px solid var(--border);
- border-radius: 12px;
+ border-radius: 14px;
  display: flex;
  align-items: center;
  justify-content: center;
  cursor: pointer;
  text-decoration: none;
- box-shadow: var(--shadow-subtle);
+ box-shadow: var(--shadow-glass);
  opacity: 0;
  pointer-events: none;
- transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
- z-index: 996;
- font-size: 1.3rem;
- color: #0A0A0A;
+ transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+ z-index: 998;
+ font-size: 1.2rem;
+ color: var(--accent);
  font-weight: 600;
  }
 
@@ -275,7 +365,9 @@
  }
 
  .back-top:hover {
- background: var(--accent-hover);
+ background: rgba(0, 245, 255, 0.1);
+ border-color: rgba(0, 245, 255, 0.3);
+ color: var(--accent-hover);
  transform: translateY(-3px);
  }
 
@@ -287,27 +379,31 @@
  /* — Footer — */
  footer {
  text-align: center;
- padding: 40px 20px;
- margin-top: 60px;
+ padding: 48px 20px;
+ margin-top: 80px;
  color: var(--text-secondary);
- font-size: 0.9rem;
+ font-size: 0.85rem;
  border-top: 1px solid var(--border);
+ font-weight: 400;
+ letter-spacing: 0.02em;
  }
 
  /* — Scroll Reveal — */
  .reveal {
  opacity: 0;
- transform: translateY(24px);
- transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+ transform: scale(0.95);
+ transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
  }
 
  .reveal.visible {
  opacity: 1;
- transform: translateY(0);
+ transform: scale(1);
  }
 
  /* — Reduced Motion — */
  @media (prefers-reduced-motion: reduce) {
+ .ambient-orb { display: none; }
+ .reveal { opacity: 1; transform: none; transition: none; }
  *, *::before, *::after {
  animation-duration: 0.01ms !important;
  transition-duration: 0.01ms !important;
@@ -316,26 +412,55 @@
  }
 
  /* — Responsive — */
+ @media (max-width: 1024px) {
+ .bento-grid {
+ grid-template-columns: repeat(2, 1fr);
+ grid-template-areas:
+   "hero  hero"
+   "harry road"
+   "stranger neon"
+   "mario mario";
+ }
+ }
+
  @media (max-width: 768px) {
- .grid { grid-template-columns: 1fr; gap: 16px; padding: 0 20px; }
+ .bento-grid {
+ grid-template-columns: 1fr;
+ grid-template-areas:
+   "hero"
+   "harry"
+   "road"
+   "stranger"
+   "neon"
+   "mario";
+ padding: 0 20px;
+ }
  header.site-header { padding: 50px 20px 30px; }
  .site-title { font-size: clamp(1.6rem, 5vw, 2.2rem); }
- .category-label { padding: 0 20px; margin: 40px auto 20px; font-size: 0.72rem; }
+ .category-label { padding: 0 20px; margin: 40px auto 20px; font-size: 0.68rem; }
  .back-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
  }
  </style>
 </head>
 <body>
+ <!-- Global Noise -->
+ <div class="noise-overlay"></div>
+ 
+ <!-- Ambient Orbs -->
+ <div class="ambient-orb orb-1"></div>
+ <div class="ambient-orb orb-2"></div>
+
  <header class="site-header">
  <h1 class="site-title">Kamesh Aether Dashboard</h1>
  <p class="site-subtitle">Showcasing projects and live demos</p>
  </header>
 
  <main>
- <p class="category-label">Words & Worlds</p>
- <div class="grid">
-
- <article class="card reveal">
+ <div class="bento-grid">
+ 
+ <p class="category-label bento-label-words">Words & Worlds</p>
+ 
+ <article class="card reveal card-hero">
  <div class="card-img blog">📝</div>
  <div class="card-content">
  <div class="status-badge"><span class="status-dot"></span> Live</div>
@@ -344,8 +469,8 @@
  <a href="https://kameshaether.github.io/ai-today-blog/" target="_blank" rel="noopener" class="btn">Visit Blog</a>
  </div>
  </article>
-
- <article class="card reveal">
+ 
+ <article class="card reveal card-harry">
  <div class="card-img harry-potter">🧙</div>
  <div class="card-content">
  <div class="status-badge"><span class="status-dot"></span> Live</div>
@@ -354,23 +479,8 @@
  <a href="https://kameshaether.github.io/harry-potter-chronicles/" target="_blank" rel="noopener" class="btn">Read Chronicle</a>
  </div>
  </article>
-
- <article class="card reveal">
- <div class="card-img stranger">📺</div>
- <div class="card-content">
- <div class="status-badge"><span class="status-dot"></span> Live</div>
- <h2>Stranger Things Tribute</h2>
- <p>Atmospheric fan page for Stranger Things with ambient particles and episode guides.</p>
- <a href="https://kameshaether.github.io/stranger-things-tribute/" target="_blank" rel="noopener" class="btn">Explore</a>
- </div>
- </article>
-
- </div>
-
- <p class="category-label">Games</p>
- <div class="grid">
-
- <article class="card reveal">
+ 
+ <article class="card reveal card-road">
  <div class="card-img road-rash">🏍️</div>
  <div class="card-content">
  <div class="status-badge"><span class="status-dot"></span> Live</div>
@@ -379,8 +489,20 @@
  <a href="https://kameshaether.github.io/road-rash-championship/" target="_blank" rel="noopener" class="btn">Play Game</a>
  </div>
  </article>
-
- <article class="card reveal">
+ 
+ <p class="category-label bento-label-games">Games</p>
+ 
+ <article class="card reveal card-stranger">
+ <div class="card-img stranger">📺</div>
+ <div class="card-content">
+ <div class="status-badge"><span class="status-dot"></span> Live</div>
+ <h2>Stranger Things Tribute</h2>
+ <p>Atmospheric fan page for Stranger Things with ambient particles and episode guides.</p>
+ <a href="https://kameshaether.github.io/stranger-things-tribute/" target="_blank" rel="noopener" class="btn">Explore</a>
+ </div>
+ </article>
+ 
+ <article class="card reveal card-neon">
  <div class="card-img neon-snake">✨</div>
  <div class="card-content">
  <div class="status-badge"><span class="status-dot"></span> Live</div>
@@ -389,8 +511,8 @@
  <a href="https://kameshaether.github.io/neon-snake/" target="_blank" rel="noopener" class="btn">Play Game</a>
  </div>
  </article>
-
- <article class="card reveal">
+ 
+ <article class="card reveal card-mario">
  <div class="card-img mario">🍄</div>
  <div class="card-content">
  <div class="status-badge"><span class="status-dot"></span> Live</div>
@@ -399,7 +521,7 @@
  <a href="https://kameshaether.github.io/super-mario-enhanced/" target="_blank" rel="noopener" class="btn">Play Game</a>
  </div>
  </article>
-
+ 
  </div>
  </main>
 
@@ -410,21 +532,101 @@
  <a href="#" class="back-top" aria-label="Back to top">↑</a>
 
  <script>
+ /* — Dynamic Year — */
  document.getElementById('year').textContent = new Date().getFullYear();
 
- /* Scroll reveal — staggered */
+ /* — Accessibility Notice — */
+ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+ /* — Ambient Orbs — */
+ if (!prefersReducedMotion) {
+ const orbs = document.querySelectorAll('.ambient-orb');
+ const orbData = Array.from(orbs).map(orb => ({
+   el: orb,
+   x: Math.random() * window.innerWidth,
+   y: Math.random() * window.innerHeight,
+   vx: (Math.random() - 0.5) * 0.4,
+   vy: (Math.random() - 0.5) * 0.4
+ }));
+
+ function animateOrbs() {
+   orbData.forEach(orb => {
+     orb.x += orb.vx;
+     orb.y += orb.vy;
+     if (orb.x < -300 || orb.x > window.innerWidth + 300) orb.vx *= -1;
+     if (orb.y < -300 || orb.y > window.innerHeight + 300) orb.vy *= -1;
+     orb.el.style.transform = `translate3d(${orb.x}px, ${orb.y}px, 0)`;
+   });
+   requestAnimationFrame(animateOrbs);
+ }
+ requestAnimationFrame(animateOrbs);
+ }
+
+ /* — Button Light Sweep — */
+ document.querySelectorAll('.btn').forEach(btn => {
+ btn.addEventListener('mousemove', (e) => {
+   const rect = btn.getBoundingClientRect();
+   const x = ((e.clientX - rect.left) / rect.width) * 100;
+   const y = ((e.clientY - rect.top) / rect.height) * 100;
+   btn.style.setProperty('--btn-x', x + '%');
+   btn.style.setProperty('--btn-y', y + '%');
+ });
+ });
+
+ /* — Magnetic Hover (Lerp) — */
+ if (!prefersReducedMotion) {
+ class MagneticCard {
+   constructor(el) {
+     this.el = el;
+     this.targetX = 0;
+     this.targetY = 0;
+     this.currentX = 0;
+     this.currentY = 0;
+     
+     this.el.addEventListener('mouseenter', () => {
+       if (!this.raf) this.raf = this.animate();
+     });
+     this.el.addEventListener('mouseleave', () => {
+       this.targetX = 0;
+       this.targetY = 0;
+     });
+     this.el.addEventListener('mousemove', (e) => {
+       const rect = this.el.getBoundingClientRect();
+       this.targetX = (e.clientX - rect.left - rect.width / 2) * 0.025;
+       this.targetY = (e.clientY - rect.top - rect.height / 2) * 0.025;
+     });
+   }
+   
+   animate() {
+     this.currentX += (this.targetX - this.currentX) * 0.12;
+     this.currentY += (this.targetY - this.currentY) * 0.12;
+     this.el.style.transform = `translate(${this.currentX}px, ${this.currentY}px)`;
+     
+     if (!this.el.matches(':hover') && Math.abs(this.currentX) < 0.05 && Math.abs(this.currentY) < 0.05) {
+       this.el.style.transform = '';
+       this.raf = null;
+       return;
+     }
+     this.raf = requestAnimationFrame(() => this.animate());
+   }
+ }
+ 
+ document.querySelectorAll('.card').forEach(card => new MagneticCard(card));
+ }
+
+ /* — Scroll Reveal — */
  const observer = new IntersectionObserver((entries) => {
  entries.forEach((entry, i) => {
  if (entry.isIntersecting) {
- setTimeout(() => entry.target.classList.add('visible'), i * 100);
- observer.unobserve(entry.target);
+   setTimeout(() => entry.target.classList.add('visible'), i * 80);
+   observer.unobserve(entry.target);
  }
  });
  }, { threshold: 0.15 });
 
  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
- /* Back-to-top visibility */
+ /* — Back-to-top visibility — */
  const backTop = document.querySelector('.back-top');
  window.addEventListener('scroll', () => {
  backTop.classList.toggle('visible', window.scrollY > 400);

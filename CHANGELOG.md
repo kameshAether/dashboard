@@ -5,23 +5,27 @@ All notable changes to Kamesh Aether's Project Dashboard will be documented in t
 ## [Unreleased] - 2026-07-04
 
 ### Added
-- Minimal matte-black theme replacing the vintage "Reading Nook" design
-- Liquid-glass cards with `backdrop-filter` blur and cyan accent hover states
-- Cyan accent system (`#00E5CC`) for links, buttons, and focus rings
-- Pulse dots, staggered scroll-reveal, and card lift animations
-- `prefers-reduced-motion` support for accessibility
-- WCAG AA compliant text contrast (~15.6:1 on pure black)
-- Visible focus rings on interactive elements
-- Open Graph + Twitter Card meta tags for rich social previews
-- Live status badges with pulsing green dot across all projects
+- Boutique Cyber-Noir "Deep Space" aesthetic replacing matte-black theme
+- Ambient orbs (`#7000FF`, `#00F5FF`) with `requestAnimationFrame` drift animation
+- SVG noise overlay for cinematic film grain texture
+- Bento Box grid layout with 1 hero card and adaptive responsive breakpoints
+- Glassmorphism 2.0 cards with `backdrop-filter: blur(24px) saturate(180%)` and glint sweep effect
+- Light-sweep buttons with mouse-tracking radial gradient
+- Magnetic hover effect on cards using lerp-based JS physics
+- Micro-scale scroll reveal animation (`scale(0.95)` → `scale(1)`)
 
 ### Changed
-- Typography: Inter (400, 600) replacing Cinzel/Playfair/EB Garamond
-- Removed paper texture, age overlay, and leather-binding decorations
-- Replaced gold accent and vintage palette with matte-black + cyan accent
-- `theme-color` meta updated to `#0A0A0A`
-- Fixed all 6 GitHub Pages URLs to match renamed repos
-- Removed duplicate "Snake Game" card (Neon Snake covers it)
+- Color palette: `#050507` background, `#0D0D12` surface, `#00F5FF` accent, `#7000FF` secondary
+- Typography: Inter 700 headings, ultra-tight `-0.04em` letter-spacing, labels at `0.28em`
+- Borders: ultra-subtle `rgba(255,255,255,0.08)` replacing solid borders
+- Status dots: cyan glow rings replacing matte green dots
+- Back-to-top: dark glass surface with cyan accent states
+- All card gradients deepened for atmospheric depth
+- Layout: removed category label wrappers, integrated into grid flow
+
+### Accessibility
+- `prefers-reduced-motion` fully disables orbs, reveals, and transitions
+- WCAG AA contrast maintained at ~15:1+ on deep space background
 
 ## [1.0.0] - 2025-01-01
 
