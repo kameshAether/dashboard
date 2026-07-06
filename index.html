@@ -157,6 +157,14 @@
       position: relative;
     }
 
+    .category-section {
+      margin-bottom: 48px;
+    }
+
+    .category-section:last-child {
+      margin-bottom: 0;
+    }
+
     .category-label::before,
     .category-label::after {
       content: '';
@@ -172,27 +180,29 @@
     .bento-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: auto;
-      grid-template-areas:
-        "words words words words"
-        "hero  hero  harry road"
-        "hero  hero  stranger neon"
-        "games games games games"
-        "mario mario mario mario";
+      grid-auto-rows: minmax(180px, auto);
       gap: 20px;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 48px;
     }
 
-    .bento-label-words { grid-area: words; }
-    .bento-label-games { grid-area: games; }
-    .card-hero { grid-area: hero; }
-    .card-harry { grid-area: harry; }
-    .card-road { grid-area: road; }
-    .card-stranger { grid-area: stranger; }
-    .card-neon { grid-area: neon; }
-    .card-mario { grid-area: mario; }
+    /* Hero: 2 cols × 2 rows on left */
+    .card-hero {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    /* Right column: 4 small cards in 2×2 */
+    .card-harry, .card-road, .card-stranger, .card-neon {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    /* Mario: full width below */
+    .card-mario {
+      grid-column: span 4;
+    }
 
     /* — Cards (Glassmorphism 2.0) — */
     .card {
@@ -570,11 +580,11 @@
   </header>
 
   <main>
-    <div class="bento-grid">
-      
-      <p class="category-label bento-label-words">Words & Worlds</p>
-      
-      <article class="card reveal card-hero">
+    <section class="category-section">
+      <p class="category-label">Words & Worlds</p>
+      <div class="bento-grid">
+        
+        <article class="card reveal card-hero">
         <div class="card-img blog">
           <img src="assets/harry-potter.png" alt="AI Today Blog" loading="lazy" decoding="async">
         </div>
@@ -634,7 +644,12 @@
         </div>
       </article>
 
-      <p class="category-label bento-label-games">Games</p>
+      </div>
+    </section>
+
+    <section class="category-section">
+      <p class="category-label">Games</p>
+      <div class="bento-grid">
 
       <article class="card reveal card-mario">
         <div class="card-img mario">
@@ -648,7 +663,8 @@
         </div>
       </article>
 
-    </div>
+      </div>
+    </section>
   </main>
 
   <footer>
