@@ -537,7 +537,7 @@ footer::before {
   header.site-header { padding: 50px 20px 30px; }
   .site-title { font-size: clamp(1.8rem, 6vw, 2.4rem); }
   .site-subtitle { font-size: 1rem; max-width: 90%; }
-  .category-label { padding: 0 20px; margin: 40px auto 20px; font-size: 0.7rem; letter-spacing: 0.25em; }
+  .category-label { padding: 0 20px; margin: 40px auto 20px; font-size: 0.7rem; letter-spacing: 0.2em; }
   .back-top { bottom: 24px; right: 24px; width: 44px; height: 44px; }
   .card-img { height: 160px; }
   .card-hero .card-img { height: 200px; }
