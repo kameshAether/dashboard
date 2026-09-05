@@ -1,42 +1,355 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Kamesh Aether's project dashboard — showcasing AI, games, and web development projects">
-  <meta name="theme-color" content="#050507">
-  <meta property="og:title" content="Kamesh Aether Dashboard">
-  <meta property="og:description" content="High-end boutique studio portfolio showcasing AI projects, games, and fan tributes.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://kameshaether.github.io/dashboard/">
-  <meta name="twitter:card" content="summary_large_image">
-  <title>Kamesh Aether Dashboard</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Kamesh Aether Dashboard",
-  "url": "https://kameshaether.github.io/dashboard/",
-  "description": "High-end boutique studio portfolio showcasing AI projects, games, and fan tributes.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://kameshaether.github.io/dashboard/?s={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Kamesh Aether's project dashboard — showcasing AI, games, and web development projects"
+    />
+    <meta name="theme-color" content="#050507" />
+    <meta property="og:title" content="Kamesh Aether Dashboard" />
+    <meta
+      property="og:description"
+      content="High-end boutique studio portfolio showcasing AI projects, games, and fan tributes."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://kameshaether.github.io/dashboard/"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>Kamesh Aether Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Kamesh Aether Dashboard",
+        "url": "https://kameshaether.github.io/dashboard/",
+        "description": "High-end boutique studio portfolio showcasing AI projects, games, and fan tributes.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://kameshaether.github.io/dashboard/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <!-- Global Noise -->
+    <div class="noise-overlay" aria-hidden="true"></div>
 
-      --bg: #050507;
-      --surface: #0D0D12;
-      --accent: #00F5FF;
-      --accent-hover: #33F7FF;
-      --secondary: #7000FF;
-      --text: #F5F5F7;
-      --text-secondary: #86868B;
-      --border: rgba(255, 255, 255, 0.08);
-      --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.4);
+    <!-- Ambient Orbs -->
+    <div class="ambient-orb orb-1" aria-hidden="true"></div>
+    <div class="ambient-orb orb-2" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <h1 class="site-title">Kamesh Aether Dashboard</h1>
+      <p class="site-subtitle">
+        Showcasing projects and live demos — AI, games, and creative web
+        experiences.
+      </p>
+    </header>
+
+    <main>
+      <section class="category-section">
+        <p class="category-label">Words & Worlds</p>
+        <div class="bento-grid">
+          <article class="card reveal card-hero">
+            <div class="card-img blog">
+              <img
+                src="assets/reading-nook.jpg"
+                alt="The Reading Nook Blog"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <div class="status-badge">
+                <span class="status-dot"></span> Live
+              </div>
+              <h2>The Reading Nook</h2>
+              <p>
+                A curated book blog featuring reviews, featured reads, and
+                timeless classics with a warm, literary aesthetic.
+              </p>
+              <a
+                href="https://kameshaether.github.io/ai-today-blog/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn"
+                >Visit Blog <span class="btn-arrow">→</span></a
+              >
+            </div>
+          </article>
+
+          <article class="card reveal card-harry">
+            <div class="card-img harry-potter">
+              <img
+                src="assets/harry-potter.jpg"
+                alt="Harry Potter Chronicles"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <div class="status-badge">
+                <span class="status-dot"></span> Live
+              </div>
+              <h2>Harry Potter Chronicle</h2>
+              <p>
+                Complete film-series story, magical UI, and journey through
+                Hogwarts.
+              </p>
+              <a
+                href="https://kameshaether.github.io/harry-potter-chronicles/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn"
+                >Read Chronicle <span class="btn-arrow">→</span></a
+              >
+            </div>
+          </article>
+
+          <article class="card reveal card-road">
+            <div class="card-img road-rash">
+              <img
+                src="assets/road-rash.jpg"
+                alt="Road Rash Gameplay"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <div class="status-badge">
+                <span class="status-dot"></span> Live
+              </div>
+              <h2>Road Rash</h2>
+              <p>
+                A classic motorcycle combat game revival with modern graphics
+                and gameplay.
+              </p>
+              <a
+                href="https://kameshaether.github.io/road-rash-championship/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn"
+                >Play Game <span class="btn-arrow">→</span></a
+              >
+            </div>
+          </article>
+
+          <article class="card reveal card-stranger">
+            <div class="card-img stranger">
+              <img
+                src="assets/stranger-things.jpg"
+                alt="Stranger Things Tribute"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <div class="status-badge">
+                <span class="status-dot"></span> Live
+              </div>
+              <h2>Stranger Things Tribute</h2>
+              <p>
+                Atmospheric fan page for Stranger Things with ambient particles
+                and episode guides.
+              </p>
+              <a
+                href="https://kameshaether.github.io/stranger-things-tribute/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn"
+                >Explore <span class="btn-arrow">→</span></a
+              >
+            </div>
+          </article>
+
+          <article class="card reveal card-neon">
+            <div class="card-img neon-snake">
+              <img
+                src="assets/neon-snake.jpg"
+                alt="Neon Snake Gameplay"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <div class="status-badge">
+                <span class="status-dot"></span> Live
+              </div>
+              <h2>Neon Snake</h2>
+              <p>
+                Glow-in-the-dark twist on Snake with neon aesthetic, bonus food,
+                death animations, and 3 game modes.
+              </p>
+              <a
+                href="https://kameshaether.github.io/neon-snake/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn"
+                >Play Game <span class="btn-arrow">→</span></a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="category-section">
+        <p class="category-label">Games</p>
+        <div class="bento-grid">
+          <article class="card reveal card-mario">
+            <div class="card-img mario">
+              <img
+                src="assets/super-mario.jpg"
+                alt="Super Mario Clone"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="card-content">
+              <div class="status-badge">
+                <span class="status-dot"></span> Live
+              </div>
+              <h2>Super Mario Clone</h2>
+              <p>
+                Side-scrolling platformer inspired by the iconic Super Mario
+                series.
+              </p>
+              <a
+                href="https://kameshaether.github.io/super-mario-enhanced/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn"
+                >Play Game <span class="btn-arrow">→</span></a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; <span id="year"></span> Kamesh Aether. All rights reserved.</p>
+    </footer>
+
+    <a href="#" class="back-top" aria-label="Back to top" title="Back to top"
+      >↑</a
+    >
+
+    <script>
+      /* — Dynamic Year — */
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      /* — Accessibility Notice — */
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      /* — Ambient Orbs — */
+      if (!prefersReducedMotion) {
+        const orbs = document.querySelectorAll(".ambient-orb");
+        const orbData = Array.from(orbs).map((orb) => ({
+          el: orb,
+          baseX: 0,
+          baseY: 0,
+          x: 0,
+          y: 0,
+          angle: Math.random() * Math.PI * 2,
+          speed: 0.2 + Math.random() * 0.3,
+          amp: 20 + Math.random() * 30,
+        }));
+
+        function animateOrbs() {
+          orbData.forEach((orb) => {
+            orb.angle += 0.01 * orb.speed;
+            const dx = Math.cos(orb.angle) * orb.amp;
+            const dy = Math.sin(orb.angle) * orb.amp;
+            // Also translate along an Lissajous-like path
+            orb.el.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${1 + Math.sin(orb.angle) * 0.05})`;
+          });
+          requestAnimationFrame(animateOrbs);
+        }
+        requestAnimationFrame(animateOrbs);
+      }
+
+      /* — Cursor Spotlight for Body — */
+      if (!prefersReducedMotion) {
+        let rafId;
+        document.addEventListener("mousemove", (e) => {
+          if (rafId) return; // Throttle to next frame
+          rafId = requestAnimationFrame(() => {
+            document.documentElement.style.setProperty(
+              "--cursor-x",
+              e.clientX + "px",
+            );
+            document.documentElement.style.setProperty(
+              "--cursor-y",
+              e.clientY + "px",
+            );
+            rafId = null;
+          });
+        });
+      }
+
+      /* — Cursor Spotlight for Cards — */
+      if (!prefersReducedMotion) {
+        document.querySelectorAll(".card").forEach((card) => {
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty("--spot-x", e.clientX - rect.left + "px");
+            card.style.setProperty("--spot-y", e.clientY - rect.top + "px");
+          });
+        });
+      }
+
+      /* — Button Light Sweep — */
+      document.querySelectorAll(".btn").forEach((btn) => {
+        btn.addEventListener("mousemove", (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * 100;
+          const y = ((e.clientY - rect.top) / rect.height) * 100;
+          btn.style.setProperty("--btn-x", x + "%");
+          btn.style.setProperty("--btn-y", y + "%");
+        });
+      });
+
+      /* — Scroll Reveal (TranslateY + Blur) — */
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry, i) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => entry.target.classList.add("visible"), i * 80);
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => revealObserver.observe(el));
+
+      /* — Back-to-top visibility — */
+      const backTop = document.querySelector(".back-top");
+      let scrollRaf;
+      window.addEventListener("scroll", () => {
+        if (scrollRaf) return;
+        scrollRaf = requestAnimationFrame(() => {
+          backTop.classList.toggle("visible", window.scrollY > 400);
+          scrollRaf = null;
+        });
+      });
+    </script>
+  </body>
+</html>
