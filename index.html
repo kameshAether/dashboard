@@ -323,6 +323,64 @@
         });
       });
 
+      /* — Magnetic Hover (Lerp-based) — */
+      if (!prefersReducedMotion) {
+        const magneticElements = document.querySelectorAll(".card, .btn");
+        const magneticStrength = 0.15; // How strongly the element follows the cursor
+        const magneticData = new Map();
+
+        magneticElements.forEach((el) => {
+          magneticData.set(el, {
+            x: 0,
+            y: 0,
+            targetX: 0,
+            targetY: 0,
+          });
+          el.style.willChange = "transform";
+        });
+
+        function animateMagnetic() {
+          magneticElements.forEach((el) => {
+            const data = magneticData.get(el);
+            if (!data) return;
+
+            // Smooth interpolation (lerp)
+            data.x += (data.targetX - data.x) * 0.15;
+            data.y += (data.targetY - data.y) * 0.15;
+
+            // Apply transform if there's meaningful movement
+            if (Math.abs(data.x) > 0.01 || Math.abs(data.y) > 0.01) {
+              el.style.transform = `translate3d(${data.x}px, ${data.y}px, 0)`;
+            }
+          });
+          requestAnimationFrame(animateMagnetic);
+        }
+        requestAnimationFrame(animateMagnetic);
+
+        magneticElements.forEach((el) => {
+          el.addEventListener("mousemove", (e) => {
+            const rect = el.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            const deltaX = (e.clientX - centerX) * magneticStrength;
+            const deltaY = (e.clientY - centerY) * magneticStrength;
+            const data = magneticData.get(el);
+            if (data) {
+              data.targetX = deltaX;
+              data.targetY = deltaY;
+            }
+          });
+
+          el.addEventListener("mouseleave", () => {
+            const data = magneticData.get(el);
+            if (data) {
+              data.targetX = 0;
+              data.targetY = 0;
+            }
+          });
+        });
+      }
+
       /* — Scroll Reveal (TranslateY + Blur) — */
       const revealObserver = new IntersectionObserver(
         (entries) => {
