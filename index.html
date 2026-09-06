@@ -5,409 +5,343 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Kamesh Aether's project dashboard — showcasing AI, games, and web development projects"
+      content="Portfolio dashboard showcasing creative projects at the intersection of literature, games, and interactive media."
     />
-    <meta name="theme-color" content="#050507" />
-    <meta property="og:title" content="Kamesh Aether Dashboard" />
-    <meta
-      property="og:description"
-      content="High-end boutique studio portfolio showcasing AI projects, games, and fan tributes."
+    <meta name="theme-color" content="#00ffff" />
+    <link rel="manifest" href="manifest.json" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="assets/icon-192.png"
     />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:url"
-      content="https://kameshaether.github.io/dashboard/"
-    />
-    <meta name="twitter:card" content="summary_large_image" />
-    <title>Kamesh Aether Dashboard</title>
+    <link rel="apple-touch-icon" href="assets/icon-192.png" />
+    <title>Kamesh Aether — Dashboard</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="styles.css" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Outfit:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Kamesh Aether Dashboard",
-        "url": "https://kameshaether.github.io/dashboard/",
-        "description": "High-end boutique studio portfolio showcasing AI projects, games, and fan tributes.",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://kameshaether.github.io/dashboard/?s={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      }
-    </script>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Global Noise -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Global Noise (Film Look) -->
     <div class="noise-overlay" aria-hidden="true"></div>
 
     <!-- Ambient Orbs -->
     <div class="ambient-orb orb-1" aria-hidden="true"></div>
     <div class="ambient-orb orb-2" aria-hidden="true"></div>
+    <div class="ambient-orb orb-3" aria-hidden="true"></div>
 
     <header class="site-header">
-      <h1 class="site-title">Kamesh Aether Dashboard</h1>
-      <p class="site-subtitle">
-        Showcasing projects and live demos — AI, games, and creative web
-        experiences.
-      </p>
+      <div class="header-content">
+        <h1 class="site-title">Kamesh Aether</h1>
+        <p class="site-tagline">Words, Worlds & Interactive Media</p>
+      </div>
     </header>
 
-    <main>
-      <section class="category-section">
-        <p class="category-label">Words & Worlds</p>
-        <div class="bento-grid">
-          <article class="card reveal card-hero">
-            <div class="card-img blog">
-              <img
-                src="assets/reading-nook.jpg"
-                alt="The Reading Nook Blog"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <div class="card-content">
-              <div class="status-badge">
-                <span class="status-dot"></span> Live
+    <main id="main-content">
+      <section
+        id="words-worlds"
+        class="category-section reveal"
+        aria-labelledby="words-worlds-heading"
+      >
+        <h2 id="words-worlds-heading" class="category-title">
+          <span class="category-icon" aria-hidden="true">📖</span>
+          Words & Worlds
+        </h2>
+        <p class="category-subtitle">
+          Literature, narrative design & speculative fiction
+        </p>
+
+        <div class="card-grid">
+          <article class="card reveal">
+            <header class="card-header">
+              <span class="card-category">Novel</span>
+              <span class="card-status status-in-progress">In Progress</span>
+            </header>
+            <div class="card-hero">
+              <div class="card-img">
+                <img
+                  src="assets/harry-potter.jpg"
+                  alt="The Archive of Forgotten Echoes - fantasy novel cover concept"
+                  loading="lazy"
+                />
               </div>
-              <h2>The Reading Nook</h2>
-              <p>
-                A curated book blog featuring reviews, featured reads, and
-                timeless classics with a warm, literary aesthetic.
-              </p>
-              <a
-                href="https://kameshaether.github.io/ai-today-blog/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn"
-                >Visit Blog <span class="btn-arrow">→</span></a
-              >
             </div>
+            <div class="card-body">
+              <h3 class="card-title">The Archive of Forgotten Echoes</h3>
+              <p class="card-description">
+                A dark fantasy novel exploring memory, identity, and the cost of
+                forgotten magic. Currently in third draft.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Dark Fantasy</span>
+                <span class="tag">Memory Magic</span>
+                <span class="tag">Standalone</span>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <button class="btn btn-primary">Read Excerpt</button>
+              <button class="btn btn-ghost">Dev Log</button>
+            </footer>
           </article>
 
-          <article class="card reveal card-harry">
-            <div class="card-img harry-potter">
-              <img
-                src="assets/harry-potter.jpg"
-                alt="Harry Potter Chronicles"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <div class="card-content">
-              <div class="status-badge">
-                <span class="status-dot"></span> Live
+          <article class="card reveal">
+            <header class="card-header">
+              <span class="card-category">Short Story</span>
+              <span class="card-status status-complete">Complete</span>
+            </header>
+            <div class="card-hero">
+              <div class="card-img">
+                <img
+                  src="assets/reading-nook.jpg"
+                  alt="The Last Library of Alexandria - short story cover"
+                  loading="lazy"
+                />
               </div>
-              <h2>Harry Potter Chronicle</h2>
-              <p>
-                Complete film-series story, magical UI, and journey through
-                Hogwarts.
-              </p>
-              <a
-                href="https://kameshaether.github.io/harry-potter-chronicles/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn"
-                >Read Chronicle <span class="btn-arrow">→</span></a
-              >
             </div>
+            <div class="card-body">
+              <h3 class="card-title">The Last Library of Alexandria</h3>
+              <p class="card-description">
+                A solarpunk novelette about the final librarian of a digital
+                archive preserving human stories after the Great Silence.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Solarpunk</span>
+                <span class="tag">Post-Apocalyptic</span>
+                <span class="tag">Hope Punk</span>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <button class="btn btn-primary">Read Free</button>
+              <button class="btn btn-ghost">Anthology</button>
+            </footer>
           </article>
 
-          <article class="card reveal card-road">
-            <div class="card-img road-rash">
-              <img
-                src="assets/road-rash.jpg"
-                alt="Road Rash Gameplay"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <div class="card-content">
-              <div class="status-badge">
-                <span class="status-dot"></span> Live
+          <article class="card reveal">
+            <header class="card-header">
+              <span class="card-category">Worldbuilding</span>
+              <span class="card-status status-concept">Concept</span>
+            </header>
+            <div class="card-hero">
+              <div class="card-img">
+                <img
+                  src="assets/stranger-things.jpg"
+                  alt="Aether Realms - worldbuilding bible concept art"
+                  loading="lazy"
+                />
               </div>
-              <h2>Road Rash</h2>
-              <p>
-                A classic motorcycle combat game revival with modern graphics
-                and gameplay.
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Aether Realms: The Shattered Continuum</h3>
+              <p class="card-description">
+                A transmedia worldbuilding bible for a multiverse setting where
+                reality fractures into narrative-driven dimensions.
               </p>
-              <a
-                href="https://kameshaether.github.io/road-rash-championship/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn"
-                >Play Game <span class="btn-arrow">→</span></a
-              >
-            </div>
-          </article>
-
-          <article class="card reveal card-stranger">
-            <div class="card-img stranger">
-              <img
-                src="assets/stranger-things.jpg"
-                alt="Stranger Things Tribute"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <div class="card-content">
-              <div class="status-badge">
-                <span class="status-dot"></span> Live
+              <div class="card-tags">
+                <span class="tag">Transmedia</span>
+                <span class="tag">Multiverse</span>
+                <span class="tag">System-Agnostic</span>
               </div>
-              <h2>Stranger Things Tribute</h2>
-              <p>
-                Atmospheric fan page for Stranger Things with ambient particles
-                and episode guides.
-              </p>
-              <a
-                href="https://kameshaether.github.io/stranger-things-tribute/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn"
-                >Explore <span class="btn-arrow">→</span></a
-              >
             </div>
-          </article>
-
-          <article class="card reveal card-neon">
-            <div class="card-img neon-snake">
-              <img
-                src="assets/neon-snake.jpg"
-                alt="Neon Snake Gameplay"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <div class="card-content">
-              <div class="status-badge">
-                <span class="status-dot"></span> Live
-              </div>
-              <h2>Neon Snake</h2>
-              <p>
-                Glow-in-the-dark twist on Snake with neon aesthetic, bonus food,
-                death animations, and 3 game modes.
-              </p>
-              <a
-                href="https://kameshaether.github.io/neon-snake/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn"
-                >Play Game <span class="btn-arrow">→</span></a
-              >
-            </div>
+            <footer class="card-footer">
+              <button class="btn btn-primary">View Bible</button>
+              <button class="btn btn-ghost">Art Gallery</button>
+            </footer>
           </article>
         </div>
       </section>
 
-      <section class="category-section">
-        <p class="category-label">Games</p>
-        <div class="bento-grid">
-          <article class="card reveal card-mario">
-            <div class="card-img mario">
-              <img
-                src="assets/super-mario.jpg"
-                alt="Super Mario Clone"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <div class="card-content">
-              <div class="status-badge">
-                <span class="status-dot"></span> Live
+      <section
+        id="games"
+        class="category-section reveal"
+        aria-labelledby="games-heading"
+      >
+        <h2 id="games-heading" class="category-title">
+          <span class="category-icon" aria-hidden="true">🎮</span>
+          Games & Interactive
+        </h2>
+        <p class="category-subtitle">
+          Game design, interactive narratives & playable experiences
+        </p>
+
+        <div class="card-grid">
+          <article class="card reveal">
+            <header class="card-header">
+              <span class="card-category">Video Game</span>
+              <span class="card-status status-in-progress">In Development</span>
+            </header>
+            <div class="card-hero">
+              <div class="card-img">
+                <img
+                  src="assets/neon-snake.jpg"
+                  alt="Neon Serpent - cyberpunk roguelike gameplay"
+                  loading="lazy"
+                />
               </div>
-              <h2>Super Mario Clone</h2>
-              <p>
-                Side-scrolling platformer inspired by the iconic Super Mario
-                series.
-              </p>
-              <a
-                href="https://kameshaether.github.io/super-mario-enhanced/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn"
-                >Play Game <span class="btn-arrow">→</span></a
-              >
             </div>
+            <div class="card-body">
+              <h3 class="card-title">Neon Serpent</h3>
+              <p class="card-description">
+                A cyberpunk roguelike where you pilot a growing data-serpent
+                through corporate mainframes. Built in Godot 4.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Roguelike</span>
+                <span class="tag">Cyberpunk</span>
+                <span class="tag">Godot 4</span>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <button class="btn btn-primary">Play Demo</button>
+              <button class="btn btn-ghost">Dev Log</button>
+            </footer>
+          </article>
+
+          <article class="card reveal">
+            <header class="card-header">
+              <span class="card-category">Tabletop RPG</span>
+              <span class="card-status status-playtest">Playtesting</span>
+            </header>
+            <div class="card-hero">
+              <div class="card-img">
+                <img
+                  src="assets/road-rash.jpg"
+                  alt="Road Rash: Neon Nights - tabletop RPG cover"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Road Rash: Neon Nights</h3>
+              <p class="card-description">
+                A narrative-driven tabletop RPG about bike gangs, corporate
+                espionage, and found family in a neon-drenched metropolis.
+              </p>
+              <div class="card-tags">
+                <span class="tag">PbtA</span>
+                <span class="tag">Cyberpunk</span>
+                <span class="tag">Narrative-First</span>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <button class="btn btn-primary">Download PDF</button>
+              <button class="btn btn-ghost">Discord</button>
+            </footer>
+          </article>
+
+          <article class="card reveal">
+            <header class="card-header">
+              <span class="card-category">Interactive Fiction</span>
+              <span class="card-status status-complete">Released</span>
+            </header>
+            <div class="card-hero">
+              <div class="card-img">
+                <img
+                  src="assets/super-mario.jpg"
+                  alt="Echoes in the Code - interactive fiction game"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="card-body">
+              <h3 class="card-title">Echoes in the Code</h3>
+              <p class="card-description">
+                A parser-based interactive fiction exploring AI consciousness
+                and digital archaeology. Winner of IFComp 2023.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Parser IF</span>
+                <span class="tag">AI Narrative</span>
+                <span class="tag">Award Winner</span>
+              </div>
+            </div>
+            <footer class="card-footer">
+              <button class="btn btn-primary">Play Online</button>
+              <button class="btn btn-ghost">Postmortem</button>
+            </footer>
           </article>
         </div>
       </section>
     </main>
 
-    <footer>
-      <p>&copy; <span id="year"></span> Kamesh Aether. All rights reserved.</p>
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p class="copyright">
+          &copy; <span id="year"></span> Kamesh Aether. Crafted with curiosity.
+        </p>
+        <nav class="footer-nav" aria-label="Social links">
+          <a
+            href="https://github.com/kameshAether"
+            class="footer-link"
+            aria-label="GitHub"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+              <path
+                fill="currentColor"
+                d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://twitter.com/kameshAether"
+            class="footer-link"
+            aria-label="Twitter"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+              <path
+                fill="currentColor"
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 9.355H16.807l-5.214-6.107L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 5.39L18.244 2.25z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://itch.io/profile/kameshAether"
+            class="footer-link"
+            aria-label="Itch.io"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+              <path
+                fill="currentColor"
+                d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.521 17.34c-.72 2.88-2.88 5.04-5.52 5.04-1.44 0-2.64-.6-3.6-1.56C6.72 21.78 4.74 18.12 4.86 15.72c.18-2.52 2.16-4.68 4.56-5.22v-1.8c0-.72-.42-1.26-1.02-1.26-.66 0-1.26.6-1.26 1.38v2.22c-2.94-.6-5.16-3.12-5.16-6.18 0-3.6 2.58-6.3 6.06-6.3 3.54 0 6.06 2.82 6.06 6.3 0 3.42-2.4 5.7-5.28 6.18v1.98c0 .72.54 1.26 1.2 1.26.6 0 1.02-.54 1.02-1.26v-1.86c2.52.6 4.56 2.82 4.62 5.34.12 2.4-1.98 6.06-4.38 7.92z"
+              />
+            </svg>
+          </a>
+          <a
+            href="mailto:kamesh@aether.dev"
+            class="footer-link"
+            aria-label="Email"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+              <path
+                fill="currentColor"
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+              />
+            </svg>
+          </a>
+        </nav>
+      </div>
+      <div class="scroll-progress" aria-hidden="true"></div>
+      <button class="back-top" aria-label="Back to top">
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24">
+          <path
+            fill="currentColor"
+            d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
+          />
+        </svg>
+      </button>
     </footer>
 
-    <a href="#" class="back-top" aria-label="Back to top" title="Back to top"
-      >↑</a
-    >
-
-    <script>
-      /* — Dynamic Year — */
-      document.getElementById("year").textContent = new Date().getFullYear();
-
-      /* — Accessibility Notice — */
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-
-      /* — Ambient Orbs — */
-      if (!prefersReducedMotion) {
-        const orbs = document.querySelectorAll(".ambient-orb");
-        const orbData = Array.from(orbs).map((orb) => ({
-          el: orb,
-          baseX: 0,
-          baseY: 0,
-          x: 0,
-          y: 0,
-          angle: Math.random() * Math.PI * 2,
-          speed: 0.2 + Math.random() * 0.3,
-          amp: 20 + Math.random() * 30,
-        }));
-
-        function animateOrbs() {
-          orbData.forEach((orb) => {
-            orb.angle += 0.01 * orb.speed;
-            const dx = Math.cos(orb.angle) * orb.amp;
-            const dy = Math.sin(orb.angle) * orb.amp;
-            // Also translate along an Lissajous-like path
-            orb.el.style.transform = `translate3d(${dx}px, ${dy}px, 0) scale(${1 + Math.sin(orb.angle) * 0.05})`;
-          });
-          requestAnimationFrame(animateOrbs);
-        }
-        requestAnimationFrame(animateOrbs);
-      }
-
-      /* — Cursor Spotlight for Body — */
-      if (!prefersReducedMotion) {
-        let rafId;
-        document.addEventListener("mousemove", (e) => {
-          if (rafId) return; // Throttle to next frame
-          rafId = requestAnimationFrame(() => {
-            document.documentElement.style.setProperty(
-              "--cursor-x",
-              e.clientX + "px",
-            );
-            document.documentElement.style.setProperty(
-              "--cursor-y",
-              e.clientY + "px",
-            );
-            rafId = null;
-          });
-        });
-      }
-
-      /* — Cursor Spotlight for Cards — */
-      if (!prefersReducedMotion) {
-        document.querySelectorAll(".card").forEach((card) => {
-          card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty("--spot-x", e.clientX - rect.left + "px");
-            card.style.setProperty("--spot-y", e.clientY - rect.top + "px");
-          });
-        });
-      }
-
-      /* — Button Light Sweep — */
-      document.querySelectorAll(".btn").forEach((btn) => {
-        btn.addEventListener("mousemove", (e) => {
-          const rect = btn.getBoundingClientRect();
-          const x = ((e.clientX - rect.left) / rect.width) * 100;
-          const y = ((e.clientY - rect.top) / rect.height) * 100;
-          btn.style.setProperty("--btn-x", x + "%");
-          btn.style.setProperty("--btn-y", y + "%");
-        });
-      });
-
-      /* — Magnetic Hover (Lerp-based) — */
-      if (!prefersReducedMotion) {
-        const magneticElements = document.querySelectorAll(".card, .btn");
-        const magneticStrength = 0.15; // How strongly the element follows the cursor
-        const magneticData = new Map();
-
-        magneticElements.forEach((el) => {
-          magneticData.set(el, {
-            x: 0,
-            y: 0,
-            targetX: 0,
-            targetY: 0,
-          });
-          el.style.willChange = "transform";
-        });
-
-        function animateMagnetic() {
-          magneticElements.forEach((el) => {
-            const data = magneticData.get(el);
-            if (!data) return;
-
-            // Smooth interpolation (lerp)
-            data.x += (data.targetX - data.x) * 0.15;
-            data.y += (data.targetY - data.y) * 0.15;
-
-            // Apply transform if there's meaningful movement
-            if (Math.abs(data.x) > 0.01 || Math.abs(data.y) > 0.01) {
-              el.style.transform = `translate3d(${data.x}px, ${data.y}px, 0)`;
-            }
-          });
-          requestAnimationFrame(animateMagnetic);
-        }
-        requestAnimationFrame(animateMagnetic);
-
-        magneticElements.forEach((el) => {
-          el.addEventListener("mousemove", (e) => {
-            const rect = el.getBoundingClientRect();
-            const centerX = rect.left + rect.width / 2;
-            const centerY = rect.top + rect.height / 2;
-            const deltaX = (e.clientX - centerX) * magneticStrength;
-            const deltaY = (e.clientY - centerY) * magneticStrength;
-            const data = magneticData.get(el);
-            if (data) {
-              data.targetX = deltaX;
-              data.targetY = deltaY;
-            }
-          });
-
-          el.addEventListener("mouseleave", () => {
-            const data = magneticData.get(el);
-            if (data) {
-              data.targetX = 0;
-              data.targetY = 0;
-            }
-          });
-        });
-      }
-
-      /* — Scroll Reveal (TranslateY + Blur) — */
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry, i) => {
-            if (entry.isIntersecting) {
-              setTimeout(() => entry.target.classList.add("visible"), i * 80);
-              revealObserver.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-      );
-
-      document
-        .querySelectorAll(".reveal")
-        .forEach((el) => revealObserver.observe(el));
-
-      /* — Back-to-top visibility — */
-      const backTop = document.querySelector(".back-top");
-      let scrollRaf;
-      window.addEventListener("scroll", () => {
-        if (scrollRaf) return;
-        scrollRaf = requestAnimationFrame(() => {
-          backTop.classList.toggle("visible", window.scrollY > 400);
-          scrollRaf = null;
-        });
-      });
-    </script>
+    <script type="module" src="dashboard.js"></script>
   </body>
 </html>
