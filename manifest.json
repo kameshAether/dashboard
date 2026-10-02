@@ -6,7 +6,6 @@
   "display": "standalone",
   "background_color": "#0a0a0f",
   "theme_color": "#00ffff",
-  "orientation": "portrait-primary",
   "icons": [
     {
       "src": "assets/icon-72.png",
@@ -64,14 +63,14 @@
       "name": "Words & Worlds",
       "short_name": "Words",
       "description": "View literature and narrative projects",
-      "url": "/dashboard/#words-worlds",
+      "url": "./#words-worlds",
       "icons": [{ "src": "assets/icon-192.png", "sizes": "192x192" }]
     },
     {
       "name": "Games",
       "short_name": "Games",
       "description": "View game projects and interactive experiences",
-      "url": "/dashboard/#games",
+      "url": "./#games",
       "icons": [{ "src": "assets/icon-192.png", "sizes": "192x192" }]
     }
   ],

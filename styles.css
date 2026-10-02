@@ -112,7 +112,7 @@ body {
   border-radius: 50%;
   pointer-events: none;
   z-index: -1;
-  filter: blur(250px);
+  filter: blur(180px);
   opacity: 0.35;
   will-change: transform;
 }
@@ -155,6 +155,17 @@ body {
   background: rgba(0, 245, 255, 0.4);
 }
 
+@property --cursor-x {
+  syntax: "<length>";
+  initial-value: 50%;
+  inherits: false;
+}
+@property --cursor-y {
+  syntax: "<length>";
+  initial-value: 50%;
+  inherits: false;
+}
+
 /* — Background Spotlight — */
 body::after {
   content: "";
@@ -167,7 +178,7 @@ body::after {
   );
   pointer-events: none;
   z-index: -2;
-  transition: background 0.2s linear;
+  transition: background 0.15s linear;
 }
 
 /* — Skip Link — */
@@ -241,32 +252,7 @@ header.site-header {
   max-width: 500px;
 }
 
-/* — Category Labels — */
-.category-label {
-  text-align: center;
-  font-size: clamp(0.65rem, 1.5vw, 0.9rem);
-  font-weight: 600;
-  letter-spacing: 0.28em; /* Theme plan: 0.28em */
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin: clamp(40px, 4vw, 60px) auto clamp(20px, 2vw, 28px);
-  max-width: 1200px;
-  padding: 0 clamp(20px, 3vw, 48px);
-  position: relative;
-}
-
-.category-label::before,
-.category-label::after {
-  content: "";
-  display: inline-block;
-  width: 48px;
-  height: 1px;
-  background: var(--border);
-  vertical-align: middle;
-  margin: 0 16px;
-}
-
-/* — Category Sections (New Card Layout) — */
+/* — Category Sections (Card Layout) — */
 .category-section {
   max-width: 1200px;
   margin: 0 auto 80px;
@@ -427,69 +413,6 @@ header.site-header {
   margin-top: auto;
 }
 
-/* — Bento Grid — */
-.bento-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-areas:
-    "hero  hero  harry road"
-    "hero  hero  stranger neon"
-    "mario mario mario mario";
-  grid-auto-rows: minmax(180px, auto);
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 48px;
-  contain: layout; /* Contain layout changes to this grid */
-}
-
-/* Hero: 2 cols × 2 rows on left */
-.card-hero {
-  grid-area: hero;
-  border: 1px solid rgba(0, 245, 255, 0.15);
-}
-.card-hero:hover {
-  border-color: rgba(0, 245, 255, 0.4);
-  box-shadow:
-    var(--shadow-glass),
-    inset 0 0 40px rgba(0, 245, 255, 0.06);
-}
-.card-hero h2 {
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
-}
-.card-hero p {
-  font-size: clamp(1rem, 2vw, 1.25rem);
-  color: var(--text);
-  font-weight: 500;
-}
-.card-hero .btn {
-  padding: 0.8rem 1.6rem;
-  font-size: 0.95rem;
-  box-shadow: 0 4px 16px rgba(0, 245, 255, 0.15);
-}
-.card-hero .btn:hover {
-  box-shadow: 0 6px 24px rgba(0, 245, 255, 0.2);
-}
-
-/* Right column: 4 small cards in 2×2 */
-.card-harry {
-  grid-area: harry;
-}
-.card-road {
-  grid-area: road;
-}
-.card-stranger {
-  grid-area: stranger;
-}
-.card-neon {
-  grid-area: neon;
-}
-
-/* Mario: full width below */
-.card-mario {
-  grid-area: mario;
-}
-
 /* — Cards (Glassmorphism 2.0) — */
 .card {
   background: rgba(13, 13, 18, 0.7);
@@ -562,9 +485,6 @@ header.site-header {
   position: relative;
   overflow: hidden;
 }
-.card-hero .card-img {
-  height: 240px;
-}
 .card-img img {
   width: 100%;
   height: 100%;
@@ -586,173 +506,9 @@ header.site-header {
   z-index: 0;
 }
 
-/* Specific image backgrounds for fallback/transparency - Deep atmospheric gradients with color storytelling */
-.card-img.blog {
-  background:
-    radial-gradient(
-      ellipse at 30% 20%,
-      rgba(139, 69, 19, 0.15) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at 70% 80%,
-      rgba(210, 105, 30, 0.1) 0%,
-      transparent 40%
-    ),
-    linear-gradient(135deg, #1a0f0a 0%, #0f0805 50%, #080504 100%);
-}
-.card-img.harry-potter {
-  background:
-    radial-gradient(
-      ellipse at 50% 30%,
-      rgba(112, 0, 255, 0.12) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at 20% 70%,
-      rgba(255, 215, 0, 0.08) 0%,
-      transparent 40%
-    ),
-    linear-gradient(135deg, #1a0a14 0%, #0d050a 50%, #080306 100%);
-}
-.card-img.road-rash {
-  background:
-    radial-gradient(
-      ellipse at 40% 40%,
-      rgba(255, 100, 0, 0.15) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at 80% 20%,
-      rgba(255, 200, 50, 0.1) 0%,
-      transparent 35%
-    ),
-    linear-gradient(135deg, #1f1008 0%, #140a04 50%, #0a0603 100%);
-}
-.card-img.neon-snake {
-  background:
-    radial-gradient(
-      ellipse at 60% 50%,
-      rgba(0, 245, 255, 0.12) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at 10% 90%,
-      rgba(112, 0, 255, 0.1) 0%,
-      transparent 40%
-    ),
-    linear-gradient(135deg, #05101f 0%, #030810 50%, #020508 100%);
-}
-.card-img.mario {
-  background:
-    radial-gradient(
-      ellipse at 30% 60%,
-      rgba(255, 100, 100, 0.12) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at 70% 30%,
-      rgba(255, 215, 0, 0.1) 0%,
-      transparent 40%
-    ),
-    linear-gradient(135deg, #0f1a0f 0%, #081008 50%, #050805 100%);
-}
-.card-img.stranger {
-  background:
-    radial-gradient(
-      ellipse at 50% 50%,
-      rgba(255, 0, 100, 0.15) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse at 90% 10%,
-      rgba(112, 0, 255, 0.1) 0%,
-      transparent 35%
-    ),
-    linear-gradient(135deg, #1a0505 0%, #0d0202 50%, #080202 100%);
-}
 
-/* Hero card enhanced gradient overlay - More dramatic */
-.card-hero .card-img::after {
-  background: linear-gradient(
-    to top,
-    rgba(5, 5, 7, 0.75),
-    rgba(5, 5, 7, 0.4) 35%,
-    rgba(112, 0, 255, 0.03) 60%,
-    transparent
-  );
-}
 
-/* Hero card specific enhancements */
-.card-hero {
-  position: relative;
-}
-.card-hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: 20px;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 245, 255, 0.02) 0%,
-    transparent 50%,
-    rgba(112, 0, 255, 0.02) 100%
-  );
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.card-hero:hover::before {
-  opacity: 1;
-}
-.card-hero .card-content {
-  z-index: 3;
-}
-.card-hero h2 {
-  background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.card-hero .btn {
-  position: relative;
-  z-index: 3;
-}
-.card-hero .card-img img {
-  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.card-hero:hover .card-img img {
-  transform: scale(1.12);
-}
 
-.card-content {
-  padding: 1.6rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  position: relative;
-  z-index: 2;
-}
-
-.card h2 {
-  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-  margin-bottom: 0.75rem;
-  color: var(--text);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1.2;
-}
-
-.card p {
-  color: var(--text-secondary);
-  margin-bottom: 1.5rem;
-  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
-  line-height: 1.65;
-  flex-grow: 1;
-  font-weight: 400;
-  letter-spacing: 0.01em;
-}
 
 /* — Buttons — */
 .btn {
@@ -829,89 +585,7 @@ header.site-header {
     inset 0 0 30px rgba(0, 245, 255, 0.04);
 }
 
-/* — Status Badge — */
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.65rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.8rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--border);
-}
-.status-badge.live {
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.1);
-  border-color: rgba(16, 185, 129, 0.3);
-}
-.status-badge.coming-soon {
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.1);
-  border-color: rgba(245, 158, 11, 0.3);
-}
-.status-badge.beta {
-  color: #8b5cf6;
-  background: rgba(139, 92, 246, 0.1);
-  border-color: rgba(139, 92, 246, 0.3);
-}
-.status-badge.archive {
-  color: #6b7280;
-  background: rgba(107, 114, 128, 0.1);
-  border-color: rgba(107, 114, 128, 0.3);
-}
-.status-dot {
-  width: 8px;
-  height: 8px;
-  background: #10b981;
-  border-radius: 50%;
-  position: relative;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
-}
-.status-dot::after {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 50%;
-  background: rgba(16, 185, 129, 0.6);
-  animation: pulse-dot 2.5s infinite;
-}
-.status-badge.coming-soon .status-dot {
-  background: #f59e0b;
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
-}
-.status-badge.coming-soon .status-dot::after {
-  background: rgba(245, 158, 11, 0.6);
-}
-.status-badge.beta .status-dot {
-  background: #8b5cf6;
-  box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
-}
-.status-badge.beta .status-dot::after {
-  background: rgba(139, 92, 246, 0.6);
-}
-.status-badge.archive .status-dot {
-  background: #6b7280;
-  box-shadow: 0 0 8px rgba(107, 114, 128, 0.5);
-}
-.status-badge.archive .status-dot::after {
-  background: rgba(107, 114, 128, 0.6);
-}
-@keyframes pulse-dot {
-  0% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(2.8);
-    opacity: 0;
-  }
-}
+
 
 /* — Back to Top — */
 .back-top {
@@ -1068,41 +742,21 @@ header.site-header {
   }
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  /* Lower blur on performance-conscious devices */
+  .ambient-orb.orb-1 { filter: blur(120px); }
+  .ambient-orb.orb-2 { filter: blur(120px); }
+  .ambient-orb.orb-3 { filter: blur(120px); }
+}
+
 /* — Responsive — */
 @media (max-width: 1024px) {
-  .bento-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas:
-      "hero  hero"
-      "harry road"
-      "stranger neon"
-      "mario mario";
-    gap: 16px;
-    padding: 0 32px;
-    contain: layout;
-  }
   header.site-header {
     padding: 60px 32px 36px;
-  }
-  .category-label {
-    padding: 0 32px;
-    margin: 48px auto 20px;
   }
 }
 
 @media (max-width: 768px) {
-  .bento-grid {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      "hero"
-      "harry"
-      "road"
-      "stranger"
-      "neon"
-      "mario";
-    gap: 16px;
-    padding: 0 20px;
-  }
   header.site-header {
     padding: 50px 20px 30px;
   }

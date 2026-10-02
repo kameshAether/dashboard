@@ -13,7 +13,6 @@ const CONFIG = {
   orbAmplitude: { min: 20, max: 50 },
   revealDelay: 80,
   scrollThreshold: 400,
-  cursorThrottle: true,
 };
 
 // ============================================
@@ -23,6 +22,7 @@ const state = {
   prefersReducedMotion: false,
   magneticData: new Map(),
   orbData: [],
+  orbRafId: null,
   cursorRafId: null,
   backTopRafId: null,
   parallaxRafId: null,
@@ -35,13 +35,10 @@ const lerp = (current, target, factor) => current + (target - current) * factor;
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
-const debounce = (fn, delay) => {
-  let timeoutId;
-  return (...args) => {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fn(...args), delay);
-  };
-};
+// ============================================
+// Animation Loop Registry
+// ============================================
+const loops = {};
 
 // ============================================
 // Ambient Orbs Animation
@@ -59,10 +56,8 @@ function initAmbientOrbs() {
       Math.random() * (CONFIG.orbAmplitude.max - CONFIG.orbAmplitude.min),
   }));
 
-  let orbRafId = null;
   function animateOrbs() {
     if (state.prefersReducedMotion) return;
-
     state.orbData.forEach((orb) => {
       orb.angle += 0.01 * orb.speed;
       const dx = Math.cos(orb.angle) * orb.amp;
@@ -71,7 +66,9 @@ function initAmbientOrbs() {
     });
     state.orbRafId = requestAnimationFrame(animateOrbs);
   }
+
   state.orbRafId = requestAnimationFrame(animateOrbs);
+  loops.ambientOrbs = animateOrbs;
 }
 
 // ============================================
@@ -131,13 +128,14 @@ function initButtonSweep() {
 }
 
 // ============================================
-// Magnetic Hover (Lerp-based) with Optimized Debounce
+// Magnetic Hover (Lerp-based)
 // ============================================
 function initMagneticHover() {
   if (state.prefersReducedMotion) return;
   if (window.matchMedia('(pointer: coarse)').matches) return;
 
   const magneticElements = document.querySelectorAll(".card, .btn");
+  let magneticActive = false;
 
   magneticElements.forEach((el) => {
     state.magneticData.set(el, {
@@ -148,10 +146,10 @@ function initMagneticHover() {
       isHovering: false,
     });
 
-    // Apply will-change ONLY during active hover + animation
     el.addEventListener(
       "mouseenter",
       () => {
+        magneticActive = true;
         const data = state.magneticData.get(el);
         if (data) {
           data.isHovering = true;
@@ -170,7 +168,9 @@ function initMagneticHover() {
           data.targetX = 0;
           data.targetY = 0;
         }
-        // Remove will-change after animation settles
+        magneticActive = magneticElements.some(
+          (e) => state.magneticData.get(e)?.isHovering,
+        );
         setTimeout(() => {
           const d = state.magneticData.get(el);
           if (
@@ -189,6 +189,7 @@ function initMagneticHover() {
 
   function animateMagnetic() {
     if (state.prefersReducedMotion) return;
+    if (!magneticActive) return;
 
     magneticElements.forEach((el) => {
       const data = state.magneticData.get(el);
@@ -203,7 +204,6 @@ function initMagneticHover() {
         el.style.transform = "";
         data.x = 0;
         data.y = 0;
-        // Clean up will-change when settled and not hovering
         if (!data.isHovering) {
           el.style.willChange = "auto";
         }
@@ -212,11 +212,9 @@ function initMagneticHover() {
     requestAnimationFrame(animateMagnetic);
   }
 
-  // Throttled mousemove using rAF (better than debounce for smooth animation)
   const throttledMousemove = (el, e) => {
     const data = state.magneticData.get(el);
     if (!data || !data.isHovering) return;
-
     if (data.rafPending) return;
     data.rafPending = true;
 
@@ -237,6 +235,13 @@ function initMagneticHover() {
       passive: true,
     });
   });
+
+  // Start the magnetic loop — it will bail out early when nothing is hovered
+  function startMagneticLoop() {
+    requestAnimationFrame(animateMagnetic);
+  }
+  startMagneticLoop();
+  loops.magnetic = startMagneticLoop;
 }
 
 // ============================================
@@ -289,7 +294,6 @@ function initBackToTop() {
     { passive: true },
   );
 
-  // Smooth scroll to top
   backTop.addEventListener("click", (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -312,7 +316,7 @@ function initScrollProgress() {
   };
 
   window.addEventListener("scroll", updateProgress, { passive: true });
-  updateProgress(); // Initial call
+  updateProgress();
 }
 
 // ============================================
@@ -358,28 +362,19 @@ function initDynamicYear() {
 // Touch Support Fallbacks
 // ============================================
 function initTouchSupport() {
-  // Add active states for touch devices
   document.querySelectorAll(".card, .btn").forEach((el) => {
-    el.addEventListener(
-      "touchstart",
-      () => {
-        el.classList.add("touch-active");
-      },
-      { passive: true },
-    );
+    el.addEventListener("touchstart", () => {
+      el.classList.add("touch-active");
+    }, { passive: true });
 
-    el.addEventListener(
-      "touchend",
-      () => {
-        setTimeout(() => el.classList.remove("touch-active"), 300);
-      },
-      { passive: true },
-    );
+    el.addEventListener("touchend", () => {
+      setTimeout(() => el.classList.remove("touch-active"), 300);
+    }, { passive: true });
   });
 }
 
 // ============================================
-// Focus Trap Alignment for Magnetic Elements
+// Focus Alignment for Magnetic Elements
 // ============================================
 function initFocusAlignment() {
   document.querySelectorAll(".card, .btn").forEach((el) => {
@@ -405,27 +400,24 @@ function initFocusAlignment() {
 }
 
 // ============================================
-// Page Visibility API - Pause Animations
+// Page Visibility API - Pause/Resume Animations
 // ============================================
 function initPageVisibility() {
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
-      // Cancel all RAF loops to save battery
       if (state.cursorRafId) cancelAnimationFrame(state.cursorRafId);
       if (state.parallaxRafId) cancelAnimationFrame(state.parallaxRafId);
       if (state.backTopRafId) cancelAnimationFrame(state.backTopRafId);
       if (state.orbRafId) cancelAnimationFrame(state.orbRafId);
     } else {
-      // Page became visible again — restart all animation loops
       state.cursorRafId = null;
       state.parallaxRafId = null;
       state.backTopRafId = null;
       state.orbRafId = null;
       if (!state.prefersReducedMotion) {
-        initAmbientOrbs();
-        initBodySpotlight();
-        initHeroParallax();
-        initBackToTop();
+        // Restart RAF loops without re-adding event listeners
+        if (loops.ambientOrbs) loops.ambientOrbs();
+        if (loops.magnetic) loops.magnetic();
       }
     }
   });
@@ -454,12 +446,10 @@ function init() {
   initPageVisibility();
 }
 
-// Auto-initialize when DOM is ready
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init);
 } else {
   init();
 }
 
-// Export for potential module usage
 export { init, state, CONFIG };

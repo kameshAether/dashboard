@@ -1,7 +1,6 @@
 # Robots.txt for Kamesh Aether Dashboard
 User-agent: *
 Allow: /
-Crawl-delay: 1
 
 # Sitemap
 Sitemap: https://kameshaether.github.io/dashboard/sitemap.xml
