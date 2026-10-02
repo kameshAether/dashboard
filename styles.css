@@ -255,13 +255,6 @@ header.site-header {
   position: relative;
 }
 
-.category-section {
-  margin-bottom: 48px;
-}
-.category-section:last-child {
-  margin-bottom: 0;
-}
-
 .category-label::before,
 .category-label::after {
   content: "";
@@ -500,8 +493,8 @@ header.site-header {
 /* — Cards (Glassmorphism 2.0) — */
 .card {
   background: rgba(13, 13, 18, 0.7);
-  backdrop-filter: blur(24px) saturate(180%); /* Theme plan: 24px/180% */
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(130%);
+  -webkit-backdrop-filter: blur(24px) saturate(130%);
   border: 1px solid var(--border);
   border-radius: 20px;
   overflow: hidden;
@@ -1055,6 +1048,9 @@ header.site-header {
 /* — Reduced Motion — */
 @media (prefers-reduced-motion: reduce) {
   .ambient-orb {
+    display: none;
+  }
+  .noise-overlay {
     display: none;
   }
   .reveal {

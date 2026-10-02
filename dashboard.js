@@ -245,11 +245,12 @@ function initMagneticHover() {
 function initScrollReveal() {
   const revealObserver = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          const index = parseInt(entry.target.dataset.index || "0", 10);
           setTimeout(
             () => entry.target.classList.add("visible"),
-            i * CONFIG.revealDelay,
+            index * CONFIG.revealDelay,
           );
           revealObserver.unobserve(entry.target);
         }
@@ -260,7 +261,10 @@ function initScrollReveal() {
 
   document
     .querySelectorAll(".reveal")
-    .forEach((el) => revealObserver.observe(el));
+    .forEach((el, index) => {
+      el.dataset.index = index;
+      revealObserver.observe(el);
+    });
 }
 
 // ============================================
@@ -411,6 +415,18 @@ function initPageVisibility() {
       if (state.parallaxRafId) cancelAnimationFrame(state.parallaxRafId);
       if (state.backTopRafId) cancelAnimationFrame(state.backTopRafId);
       if (state.orbRafId) cancelAnimationFrame(state.orbRafId);
+    } else {
+      // Page became visible again — restart all animation loops
+      state.cursorRafId = null;
+      state.parallaxRafId = null;
+      state.backTopRafId = null;
+      state.orbRafId = null;
+      if (!state.prefersReducedMotion) {
+        initAmbientOrbs();
+        initBodySpotlight();
+        initHeroParallax();
+        initBackToTop();
+      }
     }
   });
 }

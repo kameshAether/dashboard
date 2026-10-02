@@ -2,7 +2,7 @@
   "name": "Kamesh Aether Dashboard",
   "short_name": "Kamesh Dashboard",
   "description": "Portfolio dashboard showcasing creative projects at the intersection of literature, games, and interactive media.",
-  "start_url": "/dashboard/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#0a0a0f",
   "theme_color": "#00ffff",
